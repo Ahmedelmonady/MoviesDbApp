@@ -37,7 +37,7 @@
             app:layout_constraintHorizontal_bias="0.051"
             app:layout_constraintStart_toEndOf="@+id/moviePoster"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.04" />
+            app:layout_constraintVertical_bias="0.228" />
 
         <TextView
             android:id="@+id/movieReleaseDate"
@@ -50,6 +50,6 @@
             app:layout_constraintHorizontal_bias="0.071"
             app:layout_constraintStart_toEndOf="@+id/moviePoster"
             app:layout_constraintTop_toBottomOf="@+id/movieTitle"
-            app:layout_constraintVertical_bias="0.045" />
+            app:layout_constraintVertical_bias="0.567" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
