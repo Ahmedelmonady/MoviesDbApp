@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.card_movies.view.*
 
 class MoviesAdapter(var moviesList: ArrayList<Movie>, var movieListener: MovieListener ):
-    RecyclerView.Adapter<MoviesAdapter.MovieViewHolder(){
+    RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>(){
 
     interface MovieListener {
         fun movieClicked(title: String)
