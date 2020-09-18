@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.card_movies.view.*
 
-class MoviesAdapter(var moviesList: ArrayList<Movie>, var movieListener: MovieListener ):
+class MoviesAdapter(var moviesList: MutableList<Movie>, var movieListener: MovieListener ):
     RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>(){
 
     interface MovieListener {
