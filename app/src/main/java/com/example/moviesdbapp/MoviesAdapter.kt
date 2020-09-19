@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import kotlinx.android.synthetic.main.card_movies.view.*
 
-class MoviesAdapter(var moviesList: MutableList<Movie>?, var movieListener: MovieListener ):
+class MoviesAdapter(var moviesList: MutableList<Movie>? ):
     RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>(){
 
     interface MovieListener {
@@ -19,7 +19,6 @@ class MoviesAdapter(var moviesList: MutableList<Movie>?, var movieListener: Movi
         init {
             itemView.setOnClickListener(View.OnClickListener {
                 var movie = itemView.getTag() as Movie
-                movieListener.movieClicked(movie.id)
             })
         }
 
