@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.*
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,11 +28,13 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.adapter = moviesAdapter
         recyclerView.layoutManager = linearLayoutManager
+
+        attachOnScrollListener()
     }
 
     fun getPopularMovies(){
         MoviesRepository.fetchPopularMovies(
-            page = 1,
+            currentPageNumber,
             ::onPopularMoviesFetched,
             ::onError
         )
@@ -42,5 +46,21 @@ class MainActivity : AppCompatActivity() {
 
     fun onPopularMoviesFetched(moviesList : MutableList<Movie>) {
         moviesAdapter.appendMovies(moviesList)
+    }
+
+    fun attachOnScrollListener(){
+        recyclerView.addOnScrollListener(object: OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                val totalItems = linearLayoutManager.itemCount
+                val visibleItemsCount = linearLayoutManager.childCount
+                val firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition()
+
+                if(firstVisibleItem + visibleItemsCount >= totalItems / 2){
+                    recyclerView.removeOnScrollListener(this)
+                    currentPageNumber++
+                    getPopularMovies()
+                }
+            }
+        })
     }
 }
