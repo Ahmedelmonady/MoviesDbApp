@@ -46,4 +46,12 @@ class MoviesAdapter(var moviesList: MutableList<Movie>?, var movieListener: Movi
 
     override fun getItemCount(): Int = moviesList!!.size
 
+    fun appendMovies(movies: MutableList<Movie>){
+        this.moviesList!!.addAll(movies)
+        notifyItemRangeChanged(
+            this.moviesList!!.size,
+            moviesList!!.size-1
+        )
+    }
+
 }
