@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onPopularMoviesFetched(moviesList : MutableList<Movie>) {
-        moviesAdapter.appendMovies(moviesList)
+        attachOnScrollListener()
     }
 
     fun attachOnScrollListener(){
