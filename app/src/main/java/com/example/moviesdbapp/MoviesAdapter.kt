@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import kotlinx.android.synthetic.main.card_movies.view.*
 
-class MoviesAdapter(var moviesList: MutableList<Movie>, var movieListener: MovieListener ):
+class MoviesAdapter(var moviesList: MutableList<Movie>?, var movieListener: MovieListener ):
     RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>(){
 
     interface MovieListener {
@@ -41,9 +41,9 @@ class MoviesAdapter(var moviesList: MutableList<Movie>, var movieListener: Movie
                 .inflate(R.layout.card_movies, parent, false))
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.onBind(moviesList.get(position))
+        holder.onBind(moviesList!!.get(position))
     }
 
-    override fun getItemCount(): Int = moviesList.size
+    override fun getItemCount(): Int = moviesList!!.size
 
 }
