@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.MovieListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = MoviesAdapter(moviesList, this)
 
     }
