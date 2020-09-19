@@ -34,7 +34,12 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.MovieListener {
                     call: Call<MoviesResponse>,
                     response: Response<MoviesResponse>
                 ) {
-                    Log.d("repo", "${response.body()?.movies}")
+                    if(response.isSuccessful){
+                        Log.d("repo", "${response.body()?.movies}")
+                    }
+                    else{
+                        Log.d("repo", "Response is not successful")
+                    }
                 }
 
                 override fun onFailure(call: Call<MoviesResponse>, t: Throwable) {
