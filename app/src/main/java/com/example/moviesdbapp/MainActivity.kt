@@ -1,18 +1,16 @@
 package com.example.moviesdbapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.*
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MoviesAdapter.MovieListener {
 
     lateinit var moviesList: MutableList<Movie>
     var currentPageNumber: Int = 1
@@ -23,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        moviesAdapter = MoviesAdapter(mutableListOf())
+        moviesAdapter = MoviesAdapter(mutableListOf(), this)
         linearLayoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
 
         recyclerView.adapter = moviesAdapter
@@ -66,5 +64,15 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    override fun movieClicked(movie: Movie) {
+        Toast.makeText(applicationContext, movie.title, Toast.LENGTH_LONG).show()
+        var intent = Intent(this, MovieDetailsActivity::class.java)
+
+        intent.putExtra("movie", Gson().toJson(movie))
+
+        startActivity(intent)
+        finish()
     }
 }
