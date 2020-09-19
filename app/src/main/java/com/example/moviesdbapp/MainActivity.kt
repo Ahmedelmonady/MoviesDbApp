@@ -29,6 +29,9 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = moviesAdapter
         recyclerView.layoutManager = linearLayoutManager
 
+
+        getPopularMovies()
+
         attachOnScrollListener()
     }
 
@@ -45,6 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onPopularMoviesFetched(moviesList : MutableList<Movie>) {
+        moviesAdapter.appendMovies(moviesList)
         attachOnScrollListener()
     }
 
