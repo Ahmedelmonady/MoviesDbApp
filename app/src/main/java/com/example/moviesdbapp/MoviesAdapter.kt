@@ -4,27 +4,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import kotlinx.android.synthetic.main.card_movies.view.*
 
 class MoviesAdapter(var moviesList: MutableList<Movie>, var movieListener: MovieListener ):
     RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>(){
 
     interface MovieListener {
-        fun movieClicked(title: String)
+        fun movieClicked(movieId: Long)
     }
 
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         init {
             itemView.setOnClickListener(View.OnClickListener {
                 var movie = itemView.getTag() as Movie
-                movieListener.movieClicked(movie.title)
+                movieListener.movieClicked(movie.id)
             })
         }
 
         fun onBind(movie: Movie){
             itemView.setTag(movie)
-            itemView.movieTitle.setText(movie.title)
-            itemView.movieReleaseDate.setText(movie.releaseDate)
+            itemView.movieTitle.text = movie.title
+            itemView.movieReleaseDate.text = movie.releaseDate
+            itemView.movieRating.text = movie.rating.toString()
+
+            Glide.with(itemView)
+                .load("https://image.tmdb.org/t/p/w342${movie.posterPath}")
+                .transform(CenterCrop())
+                .into(itemView.moviePoster)
         }
     }
 
