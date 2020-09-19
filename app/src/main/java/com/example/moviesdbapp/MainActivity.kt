@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.MovieListener {
 
     }
 
-    override fun movieClicked(title: String) {
-        Toast.makeText(applicationContext,title,Toast.LENGTH_SHORT).show()
+    override fun movieClicked(movieId: Long) {
+        TODO("Not yet implemented")
     }
 }
