@@ -67,7 +67,6 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.MovieListener {
     }
 
     override fun movieClicked(movie: Movie) {
-        Toast.makeText(applicationContext, movie.title, Toast.LENGTH_LONG).show()
         var intent = Intent(this, MovieDetailsActivity::class.java)
 
         intent.putExtra("movie", Gson().toJson(movie))
