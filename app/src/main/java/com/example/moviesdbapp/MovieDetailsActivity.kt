@@ -1,5 +1,6 @@
 package com.example.moviesdbapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
@@ -24,5 +25,12 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieRating.text = "Rating ${movie.rating} / 10.0"
         movieOverview.text = movie.overview
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }
