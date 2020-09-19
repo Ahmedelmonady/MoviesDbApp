@@ -28,10 +28,9 @@ class MoviesAdapter(var moviesList: MutableList<Movie>, var movieListener: Movie
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.card_movies, parent, false)
-        return MovieViewHolder(view)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder
+            = MovieViewHolder(LayoutInflater.from(parent.context)
+                .inflate(R.layout.card_movies, parent, false))
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.onBind(moviesList.get(position))
